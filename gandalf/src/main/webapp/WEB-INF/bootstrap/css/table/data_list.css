@@ -1,0 +1,94 @@
+.data-container {
+  width: 100%;
+  margin-top: 30px;
+}
+.data-container table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: #5c667a;
+  border-radius: 3px;
+}
+.data-container table tr {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+}
+.data-container table th {
+  height: 100%;
+  border: 1px solid #f1f2f6;
+  background-color: #f1f2f6;
+  color: #333;
+}
+.data-container table td {
+  height: 100%;
+  border: 1px solid #f1f2f6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.parent-page-container {
+  width: 100%;
+  margin: 30px auto 0 auto;
+  padding-bottom: 20px;
+}
+
+.page-container {
+  float: right;
+}
+.page-container .page-btn {
+  width: 65px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  color: #000;
+  border: 1px solid #c3c3c3;
+  text-align: center;
+  cursor: pointer;
+  float: left;
+  border-radius: 3px;
+}
+.page-container .page-btn:hover {
+  border-color: #ff5959;
+  color: #ff5959;
+}
+.page-container .next-btn {
+  margin-left: 10px;
+}
+.page-container .text {
+  float: left;
+  width: 100px;
+  height: 25px;
+  font-size: 12px;
+  color: #595959;
+  line-height: 25px;
+  margin-left: 10px;
+}
+
+.button {
+  border-radius: 3px;
+  background-color: #a7acb8;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+.button:hover {
+  background-color: #fb527d;
+}
+
+.mr50 {
+  margin-left: 50px;
+}
+
+.ui-widget-header .ui-icon {
+  background-image: url("//kascdn.kascend.com/jellyfish/uiupload/tuiguang/ui-icons_444444_256x240.png") !important;
+}
+
+.ui-icon-circle-triangle-w {
+  background-position: -80px -192px !important;
+}
+
+/*# sourceMappingURL=data_list.css.map */
