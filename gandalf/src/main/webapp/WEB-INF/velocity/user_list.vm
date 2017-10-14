@@ -1,0 +1,102 @@
+#set($ctx = $requestContext.contextPath)
+
+#macro(pagebar $pageInfo $url)
+<div style="height:34px">
+    <ul class="pagination pagination-sm marginTop0">
+        #set($currentPage = $pageInfo.page)
+
+        #set($pageParam = "")
+        #if($url.contains("?"))
+            #set($pageParam = "&page=")
+        #else
+            #set($pageParam = "?page=")
+        #end
+
+        #if($currentPage > 1)
+            #set($callback = $url + $pageParam + ($currentPage - 1))
+            <li><a href="$callback">&laquo;</a></li>
+        #end
+
+        #if(($currentPage > 3))
+            #set($start = ($currentPage - 2))
+        #else
+            #set($start = 1)
+        #end
+        #set($end = $start + 4)
+        #set($pageList = [$start..$end])
+
+        #foreach($page in $pageList)
+            #if($page <= $pageInfo.totalPage)
+                #set($callback = $url + $pageParam + $page)
+                #if($page == $currentPage)
+                    <li class="active"><a href="#">$page<span class="sr-only">(current)</span></a></li>
+                #else
+                    <li><a href="$callback">$page</a></li>
+                #end
+            #end
+        #end
+
+        #if($currentPage < $pageInfo.totalPage)
+            #set($callback = $url + $pageParam + ($currentPage + 1))
+            <li><a href="$callback">&raquo;</a></li>
+        #end
+    </ul>
+</div>
+#end
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户列表</title>
+    <link href="${ctx}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${ctx}/bootstrap/css/popModal.css" rel="stylesheet">
+    <script src="$ctx/jquery/js/jquery-1.11.3.min.js"></script>
+    <script src="$ctx/bootstrap/js/bootstrap.js"></script>
+    <script src="$ctx/bootstrap/js/popModal.min.js"></script>
+    <script src="$ctx/bootstrap/js/bootbox.min.js"></script>
+    <script>
+        var CONTEXT_PATH = '$ctx';
+    </script>
+</head>
+
+#set($pageUrl = "${ctx}/user/list.htm?pageSize=${pageSize}")
+<body>
+<div class="container online_block">
+	<div class="block">
+		<div style="float:right; margin-bottom: 10px;margin-right: 10px;">
+			总共  ${pageInfo.itemCount}条  #pagebar(${pageInfo} $pageUrl)
+		</div>
+		<br>
+		<table class="table table-hover nowrap">
+		<thead>
+			<tr>
+			 	<th>用户UID</th>
+			 	<th>头像</th>
+				<th>昵称</th>
+				<th>签名</th>
+				<th>性别</th>
+				<th>注册时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		#foreach(${user} in ${pageInfo.items})
+			<tr>
+				<td>$!{user.uid}</td>
+				<td>
+				    <a href="$!{user.avatar}" target="_blank" class="thumbnail" style="width: 90px";>
+                        <img  width="80" height="80" src="$!{user.avatar}" class="img-rounded"/>
+                    </a>
+				</td>
+				<td>$!{user.nickname}</td>
+				<td>$!{user.signature}</td>
+				<td>$!{user.gender}</td>
+				<td>$!dateTool.format('yyyy-MM-dd HH:mm:ss', ${user.createdTime})</td>
+			</tr>
+		#end
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
